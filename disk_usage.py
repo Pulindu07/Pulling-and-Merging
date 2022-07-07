@@ -19,6 +19,12 @@ def check_cpu_usage():
     cpu_use = psutil.cpu_percent(2)
     return cpu_use > 80
 
+def disk_usage():
+    if check_disk_usage("/",2,10):
+        return False
+        
+    return True
+
 if not check_disk_usage("/",2,10):
     print("ERROR: Not enough disk space")
     sys.exit(1)
