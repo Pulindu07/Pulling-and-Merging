@@ -21,7 +21,7 @@ def cpu_usage():
     return cpu_use > 80
 
 def disk_usage():
-    if check_disk_usage("/",2,10):
+    if check_disk_usage("/",4,10):
         return False
         
     return True
