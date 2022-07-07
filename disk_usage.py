@@ -15,7 +15,8 @@ def check_disk_usage(disk,min_absolute,min_percent):
     if percent_free < min_percent or gigabyte_free < min_absolute:
         return False
     return True
-def check_cpu_usage():
+
+def cpu_usage():
     cpu_use = psutil.cpu_percent(2)
     return cpu_use > 80
 
@@ -25,11 +26,13 @@ def disk_usage():
         
     return True
 
-if not check_disk_usage("/",2,10):
-    print("ERROR: Not enough disk space")
-    sys.exit(1)
+checks = [(disk_usage(),"ERROR: Not enough disk space."),(cpu_usage(),"ERROR: CPU Overloaded.")]
 
-print("Everything okay")
+for check,msg in checks:
+    if check:
+        print(msg)
+        sys.exit(1)
+    print("Everything okay.")
 
 print("Line 1")
 sys.exit(0)
