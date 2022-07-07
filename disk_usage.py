@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import shutil
 import sys
+import psutil
 
 def check_disk_usage(disk,min_absolute,min_percent):
     """"Returns True if there's enough disk space, false otherwise"""
@@ -14,6 +15,9 @@ def check_disk_usage(disk,min_absolute,min_percent):
     if percent_free < min_percent or gigabyte_free < min_absolute:
         return False
     return True
+def check_cpu_usage():
+    cpu_use = psutil.cpu_percent(2)
+    return cpu_use > 80
 
 if not check_disk_usage("/",2,10):
     print("ERROR: Not enough disk space")
