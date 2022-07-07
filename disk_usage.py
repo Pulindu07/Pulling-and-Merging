@@ -32,7 +32,7 @@ for check,msg in checks:
     if check:
         print(msg)
         sys.exit(1)
-    print("Everything okay.")
+print("Everything okay.")
 
 print("Line 1")
 sys.exit(0)
